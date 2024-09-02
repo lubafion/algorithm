@@ -1,0 +1,27 @@
+def loopFibo(i):
+    a = [0, 1]
+    for x in range(i-1):
+        tmp = a[i-1]+a[i]
+        a.append(tmp)
+    return a
+
+def Fibonacci(i):
+    if(i == 1 | i == 2):
+        return 1
+    else:
+        a = Fibonacci(i-1) + Fibonacci(i-2)
+        return a
+    
+def Hanoi(n, f, to, by):
+    if n == 1:
+        print(f"Move{f} -> {to}")
+    else:
+        Hanoi(n-1, f, by, to)
+        print(f"Move{f} -> {to}")
+        Hanoi(n-1, by, to, f)
+
+Fibonacci(5)
+
+loopFibo(10)
+
+Hanoi(4, 'A', 'C', 'B')
