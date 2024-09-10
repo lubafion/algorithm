@@ -1,0 +1,70 @@
+#brute force
+import random
+import math
+
+arr = [0 for _ in range(100)]
+for i in range(100):
+    x = random.randrange(1, 1000)
+    y = random.randrange(1, 1000)
+    arr[i] = [x, y]
+
+def closestpair(arr):
+    a = len(arr)//2
+    arr1 = arr[a:]
+    arr2 = arr[:a]
+    arr3 = arr[a-10 : a+10]
+        
+    b = []
+    b1 = []
+    b2 = []
+    
+    for x in range(len(arr1)-1):
+        for y in range(x+1, len(arr1)):
+            b.append(math.dist(arr1[x], arr1[y]))
+    
+    for x in range(len(arr2)-1):
+        for y in range(x+1, len(arr2)):
+            b1.append(math.dist(arr2[x], arr2[y]))
+            
+    for x in range(len(arr3)-1):
+        for y in range(x+1, len(arr3)):
+            b2.append(math.dist(arr3[x], arr3[y]))
+    
+    bl = min(b)
+    br = min(b1)
+    bc = min(b2)
+    
+    return min(bl, br, bc)
+
+print(closestpair(arr))
+
+---------------------------------------------------------
+# devide and conquer
+import random
+import math
+
+def closest_pair(points):
+    md = float('inf')  
+    cp = (None, None)
+    
+    num_points = len(points)
+    
+    for i in range(num_points):
+        for j in range(i + 1, num_points):
+            d = math.dist(points[i], points[j])
+            if d < md:
+                md = d
+                cp = (points[i], points[j])
+    
+    return cp, md
+
+arr = [0 for _ in range(100)]
+for i in range(100):
+    x = random.randrange(1, 1000)
+    y = random.randrange(1, 1000)
+    arr[i] = [x, y]
+
+cl, md = closest_pair(arr)
+
+print(cl)
+print(md)
